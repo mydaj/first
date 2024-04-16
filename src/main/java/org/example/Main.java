@@ -112,8 +112,5 @@ public class Main {
         Customer customerC = new Customer(supermarket, 2, 3, 1);
         System.out.println("Customer C total price: " + customerC.calculateTotalPrice());
 
-        // 顾客 D
-        Customer customerD = new Customer(supermarket, 5, 4, 3);
-        System.out.println("Customer D total price: " + customerD.calculateTotalPrice());
     }
 }
