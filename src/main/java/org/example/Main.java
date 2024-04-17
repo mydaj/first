@@ -25,9 +25,9 @@ class Supermarket {
     private Fruit apple;//苹果
     private Fruit strawberry;//草莓
     private Fruit mango;//芒果
-    private double strawberryDiscountRate;
-    private double promotionThreshold;
-    private double promotionDiscount;
+    private double strawberryDiscountRate;// 8折
+    private double promotionThreshold;//满100减10
+    private double promotionDiscount;//10元
 
     public Supermarket() {
         this.apple = new Fruit("Apple", 8);
@@ -64,7 +64,7 @@ class Supermarket {
 }
 
 /*
-* 客户
+* 消费者
 * */
 class Customer {
     private Supermarket supermarket;//超市
