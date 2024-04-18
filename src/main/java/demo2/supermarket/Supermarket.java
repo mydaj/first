@@ -49,6 +49,16 @@ public class Supermarket {
         if (totalPrice.compareTo(BigDecimal.valueOf(100)) >= 0) {
             totalPrice = totalPrice.subtract(BigDecimal.TEN);
         }
+         /* // 满减优惠：每满100元减10元
+        BigDecimal promotionDiscount = BigDecimal.ZERO;
+        BigDecimal discountPer100 = BigDecimal.valueOf(10);
+
+        // 计算满减优惠金额
+        promotionDiscount = totalPrice.divideToIntegralValue(BigDecimal.valueOf(100)).multiply(discountPer100);
+
+        // 总价减去满减优惠
+        totalPrice = totalPrice.subtract(promotionDiscount);*/
+
         return totalPrice;
     }
 
