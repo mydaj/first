@@ -49,12 +49,10 @@ public class Supermarket {
         if (totalPrice.compareTo(BigDecimal.valueOf(100)) >= 0) {
             totalPrice = totalPrice.subtract(BigDecimal.TEN);
         }
-         /* // 满减优惠：每满100元减10元
+        /*  // 满减优惠：每满100元减10元
         BigDecimal promotionDiscount = BigDecimal.ZERO;
-        BigDecimal discountPer100 = BigDecimal.valueOf(10);
-
         // 计算满减优惠金额
-        promotionDiscount = totalPrice.divideToIntegralValue(BigDecimal.valueOf(100)).multiply(discountPer100);
+        promotionDiscount = calculatePromotionDiscount(totalPrice);
 
         // 总价减去满减优惠
         totalPrice = totalPrice.subtract(promotionDiscount);*/
@@ -63,17 +61,19 @@ public class Supermarket {
     }
 
     // 计算购买苹果、草莓和芒果的总价，使用草莓打折优惠策略
+    // 计算购买苹果、草莓和芒果的总价，使用折扣优惠策略
     public static BigDecimal calculateTotalPriceWithDiscount(BigDecimal appleWeight, BigDecimal strawberryWeight, BigDecimal mangoWeight) {
         Supermarket supermarket = new Supermarket();
         BigDecimal totalPrice = supermarket.getApple().getPricePerKg().multiply(appleWeight)
                 .add(supermarket.getStrawberry().getPricePerKg().multiply(strawberryWeight))
                 .add(supermarket.getMango().getPricePerKg().multiply(mangoWeight));
 
-        BigDecimal strawberryDiscount = supermarket.getStrawberry().getPricePerKg()
-                .multiply(strawberryWeight)
-                .multiply(BigDecimal.valueOf(1).subtract(supermarket.getStrawberry().getDiscountRate()));
+        // 计算草莓的折扣金额
+        BigDecimal strawberryDiscount = calculateDiscount(supermarket.getStrawberry().getPricePerKg(), strawberryWeight, supermarket.getStrawberry().getDiscountRate());
 
+        // 总价减去草莓的折扣金额
         totalPrice = totalPrice.subtract(strawberryDiscount);
+
         return totalPrice;
     }
 
@@ -84,6 +84,17 @@ public class Supermarket {
                 .add(supermarket.getStrawberry().getPricePerKg().multiply(strawberryWeight))
                 .add(supermarket.getMango().getPricePerKg().multiply(mangoWeight));
         return totalPrice;
+    }
+
+    // 计算草莓折扣金额的方法
+    private static BigDecimal calculateDiscount(BigDecimal pricePerKg, BigDecimal weight, BigDecimal discountRate) {
+        return pricePerKg.multiply(weight).multiply(BigDecimal.ONE.subtract(discountRate));
+    }
+
+    // 计算满减优惠金额的方法  每满100减10元
+    private static BigDecimal calculatePromotionDiscount(BigDecimal totalPrice) {
+        BigDecimal discountPer100 = BigDecimal.valueOf(10);
+        return totalPrice.divideToIntegralValue(BigDecimal.valueOf(100)).multiply(discountPer100);
     }
 
 }
