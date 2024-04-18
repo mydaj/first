@@ -15,4 +15,10 @@ public class Fruit {
     public BigDecimal getPricePerKg() {
         return pricePerKg;
     }
+
+    // 获取促销折扣率
+    public BigDecimal getDiscountRate() {
+        // 返回草莓的折扣率为0.8
+        return BigDecimal.valueOf(0.8);
+    }
 }
