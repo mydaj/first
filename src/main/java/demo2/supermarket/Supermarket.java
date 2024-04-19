@@ -61,7 +61,6 @@ public class Supermarket {
     }
 
     // 计算购买苹果、草莓和芒果的总价，使用草莓打折优惠策略
-    // 计算购买苹果、草莓和芒果的总价，使用折扣优惠策略
     public static BigDecimal calculateTotalPriceWithDiscount(BigDecimal appleWeight, BigDecimal strawberryWeight, BigDecimal mangoWeight) {
         Supermarket supermarket = new Supermarket();
         BigDecimal totalPrice = supermarket.getApple().getPricePerKg().multiply(appleWeight)
